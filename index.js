@@ -9,7 +9,14 @@ import { simulateContract } from "@three-em/node";
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    limit: "200mb",
+    extended: false,
+  }),
+);
+app.use(bodyParser.json({ limit: "200mb" }));
+));
 
 app.post('/simulate', async (req, res) => {
     const data  = req.body;
