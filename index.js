@@ -16,12 +16,11 @@ app.use(
   }),
 );
 app.use(bodyParser.json({ limit: "200mb" }));
-));
 
-app.post('/simulate', async (req, res) => {
-    const data  = req.body;
-    const simulate = await simulateContract(data);
-    res.json(simulate)
-})
+app.post("/simulate", async (req, res) => {
+  const data = req.body;
+  const simulate = await simulateContract(data);
+  res.json(simulate);
+});
 
-app.listen(port, () => console.log('Server started'));
+app.listen(port, () => console.log("Server started"));
