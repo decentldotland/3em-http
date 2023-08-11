@@ -17,6 +17,12 @@ app.use(
 );
 app.use(bodyParser.json({ limit: "200mb" }));
 
+app.use(function(req, res, next){
+    req.setTimeout(500000, function(){
+    });
+    next();
+});
+
 app.post("/simulate", async (req, res) => {
   const data = req.body;
   const simulate = await simulateContract(data);
