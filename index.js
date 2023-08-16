@@ -1,7 +1,3 @@
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const { simulateContract } = require("@three-em/node");
-
 import express from "express";
 import bodyParser from "body-parser";
 import { simulateContract } from "@three-em/node";
@@ -24,9 +20,13 @@ app.use(function(req, res, next){
 });
 
 app.post("/simulate", async (req, res) => {
-  const data = req.body;
-  const simulate = await simulateContract(data);
-  res.json(simulate);
+  try {
+    const data = req.body;
+    const simulate = await simulateContract(data);
+    res.json(simulate);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 app.listen(port, () => console.log("Server started"));
