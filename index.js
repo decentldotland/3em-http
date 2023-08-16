@@ -19,6 +19,11 @@ app.use(function(req, res, next){
     next();
 });
 
+app.use((err, req, res, next) => {
+  console.error("An error occurred:", err);
+  res.status(500).json({ error: "An internal server error occurred." });
+});
+
 app.post("/simulate", async (req, res) => {
   try {
     const data = req.body;
